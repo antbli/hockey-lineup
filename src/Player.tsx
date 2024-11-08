@@ -31,12 +31,9 @@ export const Player = ({ player, setPlayer }: Props) => {
         onClick={() => setDialogOpen(true)}
         justifyContent="center"
         alignItems="center"
-        sx={{ border: "solid", cursor: "pointer" }}
+        sx={{ cursor: "pointer" }}
       >
-        <Avatar
-          src={`https://files.eliteprospects.com/layout/players/`}
-          variant="rounded"
-        />
+        <Avatar variant="rounded" />
         <Typography variant="body1">{player?.fullname ?? "+"}</Typography>
       </Stack>
       <PlayerFinder open={dialogOpen} onClose={onClosedDialog} />

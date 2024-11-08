@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { PlayerModel } from "./Player";
 import { Lineup, LineupModel } from "./Lineup";
-import { Grid2, Stack, Typography } from "@mui/material";
-import { red } from "@mui/material/colors";
 
 type LineupsModel = {
   firstLine: LineupModel;
@@ -22,36 +20,16 @@ const Lineups = () => {
   });
 
   return (
-    <Grid2 container spacing={2}>
-      <Grid2 size={6}>
+    <div style={{ height: "100%" }}>
+      <div style={{ height: "5%" }}>TEST</div>
+      <div style={{ height: "90%" }}>
         <Lineup
-          title="First line"
           lineup={lineups.firstLine}
           setLineup={(lineup) => setLineups({ ...lineups, firstLine: lineup })}
         />
-      </Grid2>
-      <Grid2 size={6}>
-        <Lineup
-          title="Second line"
-          lineup={lineups.secondLine}
-          setLineup={(lineup) => setLineups({ ...lineups, secondLine: lineup })}
-        />
-      </Grid2>
-      <Grid2 size={6}>
-        <Lineup
-          title="Third line"
-          lineup={lineups.thirdLine}
-          setLineup={(lineup) => setLineups({ ...lineups, thirdLine: lineup })}
-        />
-      </Grid2>
-      <Grid2 size={6}>
-        <Lineup
-          title="Fourth line"
-          lineup={lineups.fourthLine}
-          setLineup={(lineup) => setLineups({ ...lineups, fourthLine: lineup })}
-        />
-      </Grid2>
-    </Grid2>
+      </div>
+      <div style={{ height: "5%" }}>TEST</div>
+    </div>
   );
 };
 
