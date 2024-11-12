@@ -6,6 +6,7 @@ import {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   Dialog,
+  DialogTitle,
   TextField,
 } from "@mui/material";
 
@@ -69,7 +70,9 @@ export const PlayerFinder = ({ open, onClose }: Props) => {
 
   return (
     <Dialog open={open} onClose={() => onClose(null)}>
+      <DialogTitle>Select player</DialogTitle>
       <Autocomplete
+        sx={{ width: "250px", margin: "10px" }}
         options={players}
         inputValue={inputValue}
         getOptionLabel={(player) => player.fullname}
