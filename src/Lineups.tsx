@@ -21,12 +21,10 @@ const Lineups = () => {
 
   return (
     <div style={{ width: "344px", margin: "auto" }}>
-      <div>
-        <Lineup
-          lineup={lineups.firstLine}
-          setLineup={(lineup) => setLineups({ ...lineups, firstLine: lineup })}
-        />
-      </div>
+      <Lineup
+        lineup={lineups.firstLine}
+        setLineup={(lineup) => setLineups({ ...lineups, firstLine: lineup })}
+      />
     </div>
   );
 };
