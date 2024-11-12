@@ -38,7 +38,9 @@ export const Player = ({ player, setPlayer, paddingTop }: Props) => {
         sx={{ cursor: "pointer" }}
       >
         <Avatar variant="rounded" />
-        <Typography variant="body1">{player?.fullname ?? "+"}</Typography>
+        <Typography align="center" variant="body1">
+          {player?.fullname ?? "+"}
+        </Typography>
       </Stack>
       <PlayerFinder open={dialogOpen} onClose={onClosedDialog} />
     </div>
