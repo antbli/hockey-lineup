@@ -20,15 +20,13 @@ const Lineups = () => {
   });
 
   return (
-    <div style={{ height: "100%" }}>
-      <div style={{ height: "5%" }}>TEST</div>
-      <div style={{ height: "90%" }}>
+    <div style={{ width: "344px", margin: "auto" }}>
+      <div>
         <Lineup
           lineup={lineups.firstLine}
           setLineup={(lineup) => setLineups({ ...lineups, firstLine: lineup })}
         />
       </div>
-      <div style={{ height: "5%" }}>TEST</div>
     </div>
   );
 };

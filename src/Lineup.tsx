@@ -1,6 +1,6 @@
 import { Grid2 } from "@mui/material";
 import { Player, PlayerModel } from "./Player";
-import testImage from "./rink.svg";
+import rinkImage from "./rink.svg";
 
 export type LineupModel = {
   goalie?: PlayerModel;
@@ -20,23 +20,13 @@ export const Lineup = ({ lineup, setLineup }: Props) => {
   return (
     <div
       style={{
-        backgroundImage: `url(${testImage})`,
-        backgroundPosition: "center",
+        backgroundImage: `url(${rinkImage})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        minHeight: "100%",
-        maxWidth: "700px",
-        margin: "0 auto",
+        backgroundSize: "344px 478px",
+        height: "478px",
       }}
     >
-      <Grid2
-        container
-        spacing={2}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100%"
-      >
+      <Grid2 container rowSpacing="55px" paddingTop="50px">
         <Grid2 size={12}>
           <Player
             player={lineup.goalie}

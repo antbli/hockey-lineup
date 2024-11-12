@@ -10,9 +10,13 @@ export type PlayerModel = {
   photo: string;
 };
 
-type Props = { player?: PlayerModel; setPlayer: (player: PlayerModel) => void };
+type Props = {
+  player?: PlayerModel;
+  setPlayer: (player: PlayerModel) => void;
+  paddingTop?: number;
+};
 
-export const Player = ({ player, setPlayer }: Props) => {
+export const Player = ({ player, setPlayer, paddingTop }: Props) => {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   const onClosedDialog = (player: PlayerModel | null) => {
@@ -26,7 +30,7 @@ export const Player = ({ player, setPlayer }: Props) => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: `${paddingTop}px` }}>
       <Stack
         onClick={() => setDialogOpen(true)}
         justifyContent="center"
@@ -37,6 +41,6 @@ export const Player = ({ player, setPlayer }: Props) => {
         <Typography variant="body1">{player?.fullname ?? "+"}</Typography>
       </Stack>
       <PlayerFinder open={dialogOpen} onClose={onClosedDialog} />
-    </>
+    </div>
   );
 };
