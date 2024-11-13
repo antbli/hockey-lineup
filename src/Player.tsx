@@ -22,8 +22,6 @@ export const Player = ({ player, setPlayer, paddingTop }: Props) => {
   const onClosedDialog = (player: PlayerModel | null) => {
     setDialogOpen(false);
 
-    console.log(player);
-
     if (player) {
       setPlayer(player);
     }
