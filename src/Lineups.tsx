@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlayerModel } from "./Player";
 import { Lineup, LineupModel } from "./Lineup";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+
+type LineupId = "1stLine" | "2ndLine" | "3rdLine" | "4thLine";
 
 type LineupsModel = {
   firstLine: LineupModel;
@@ -19,12 +22,63 @@ const Lineups = () => {
     extraPlayers: [],
   });
 
+  const [selectedLineup, setSelectedLineup] = useState<LineupId>("1stLine");
+
+  const getLineup = () => {
+    switch (selectedLineup) {
+      case "1stLine":
+        return lineups.firstLine;
+      case "2ndLine":
+        return lineups.firstLine;
+      case "3rdLine":
+        return lineups.firstLine;
+      case "4thLine":
+        return lineups.firstLine;
+      default:
+        const exhaustiveCheck: never = selectedLineup;
+        throw new Error(`Unhandled case: ${exhaustiveCheck}`);
+    }
+  };
+
+  const setLineup = (lineup: LineupModel) => {
+    switch (selectedLineup) {
+      case "1stLine":
+        setLineups({ ...lineups, firstLine: lineup });
+        break;
+      case "2ndLine":
+        setLineups({ ...lineups, secondLine: lineup });
+        break;
+      case "3rdLine":
+        setLineups({ ...lineups, thirdLine: lineup });
+        break;
+      case "4thLine":
+        setLineups({ ...lineups, fourthLine: lineup });
+        break;
+      default:
+        const exhaustiveCheck: never = selectedLineup;
+        throw new Error(`Unhandled case: ${exhaustiveCheck}`);
+    }
+  };
+
   return (
     <div style={{ width: "344px", margin: "auto" }}>
-      <Lineup
-        lineup={lineups.firstLine}
-        setLineup={(lineup) => setLineups({ ...lineups, firstLine: lineup })}
-      />
+      <ToggleButtonGroup
+        sx={{
+          marginBottom: "10px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+        exclusive
+        value={selectedLineup}
+        onChange={(_, newLineup) => setSelectedLineup(newLineup)}
+      >
+        <ToggleButton value="1stLine">1st line</ToggleButton>
+        <ToggleButton value="2ndLine">2nd line</ToggleButton>
+        <ToggleButton value="3rdLine">3rd line</ToggleButton>
+        <ToggleButton value="4thLine">4th line</ToggleButton>
+      </ToggleButtonGroup>
+      <Lineup lineup={getLineup()} setLineup={setLineup} />
     </div>
   );
 };
