@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PlayerModel } from "./Player";
 import { Lineup, LineupModel } from "./Lineup";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 type LineupId = "1stLine" | "2ndLine" | "3rdLine" | "4thLine";
 
@@ -13,14 +13,16 @@ type LineupsModel = {
   extraPlayers: PlayerModel[];
 };
 
+const initialLineups = {
+  firstLine: {},
+  secondLine: {},
+  thirdLine: {},
+  fourthLine: {},
+  extraPlayers: [],
+};
+
 const Lineups = () => {
-  const [lineups, setLineups] = useState<LineupsModel>({
-    firstLine: {},
-    secondLine: {},
-    thirdLine: {},
-    fourthLine: {},
-    extraPlayers: [],
-  });
+  const [lineups, setLineups] = useState<LineupsModel>(initialLineups);
 
   const [selectedLineup, setSelectedLineup] = useState<LineupId>("1stLine");
 
@@ -80,6 +82,13 @@ const Lineups = () => {
         <ToggleButton value="4thLine">4th line</ToggleButton>
       </ToggleButtonGroup>
       <Lineup lineup={getLineup()} setLineup={setLineup} />
+      <Button
+        sx={{ marginTop: "10px" }}
+        variant="outlined"
+        onClick={() => setLineups(initialLineups)}
+      >
+        Clear
+      </Button>
     </div>
   );
 };
