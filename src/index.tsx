@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Lineups from "./Lineups";
+import { Roster } from "./Roster";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Lineups />
+    <Roster />
   </React.StrictMode>
 );

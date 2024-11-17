@@ -5,7 +5,7 @@ import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 
 type LineupId = "1stLine" | "2ndLine" | "3rdLine" | "4thLine";
 
-type LineupsModel = {
+type RosterModel = {
   goalie?: PlayerModel;
   firstLine: LineupModel;
   secondLine: LineupModel;
@@ -14,7 +14,7 @@ type LineupsModel = {
   extraPlayers: PlayerModel[];
 };
 
-const initialLineups: LineupsModel = {
+const initialRoster: RosterModel = {
   firstLine: {},
   secondLine: {},
   thirdLine: {},
@@ -22,43 +22,42 @@ const initialLineups: LineupsModel = {
   extraPlayers: [],
 };
 
-const Lineups = () => {
-  const [lineups, setLineups] = useState<LineupsModel>(initialLineups);
+export const Roster = () => {
+  const [roster, setRoster] = useState<RosterModel>(initialRoster);
 
   const [selectedLineup, setSelectedLineup] = useState<LineupId>("1stLine");
 
   const getLineup = (): LineupModel => {
     switch (selectedLineup) {
       case "1stLine":
-        return lineups.firstLine;
+        return roster.firstLine;
       case "2ndLine":
-        return lineups.secondLine;
+        return roster.secondLine;
       case "3rdLine":
-        return lineups.thirdLine;
+        return roster.thirdLine;
       case "4thLine":
-        return lineups.fourthLine;
+        return roster.fourthLine;
       default:
         const exhaustiveCheck: never = selectedLineup;
         return exhaustiveCheck;
     }
   };
 
-  const setGoalie = (goalie?: PlayerModel) =>
-    setLineups({ ...lineups, goalie });
+  const setGoalie = (goalie?: PlayerModel) => setRoster({ ...roster, goalie });
 
   const setLineup = (lineup: LineupModel): void => {
     switch (selectedLineup) {
       case "1stLine":
-        setLineups({ ...lineups, firstLine: lineup });
+        setRoster({ ...roster, firstLine: lineup });
         break;
       case "2ndLine":
-        setLineups({ ...lineups, secondLine: lineup });
+        setRoster({ ...roster, secondLine: lineup });
         break;
       case "3rdLine":
-        setLineups({ ...lineups, thirdLine: lineup });
+        setRoster({ ...roster, thirdLine: lineup });
         break;
       case "4thLine":
-        setLineups({ ...lineups, fourthLine: lineup });
+        setRoster({ ...roster, fourthLine: lineup });
         break;
       default:
         const exhaustiveCheck: never = selectedLineup;
@@ -66,16 +65,16 @@ const Lineups = () => {
     }
   };
 
-  const copyLineups = () => {
-    const lineupsCopyText = `First line:\n${
-      lineups.goalie ?? "No player selected"
-    }\n${lineups.firstLine.rightDefense ?? "No player selected"} ${
-      lineups.firstLine.leftDefense ?? "No player selected"
-    }\n${lineups.firstLine.rightWing ?? "No player selected"} ${
-      lineups.firstLine.center ?? "No player selected"
-    } ${lineups.firstLine.rightWing ?? "No player selected"}`;
+  const copyRoster = () => {
+    const rosterCopyText = `First line:\n${
+      roster.goalie ?? "No player selected"
+    }\n${roster.firstLine.rightDefense ?? "No player selected"} ${
+      roster.firstLine.leftDefense ?? "No player selected"
+    }\n${roster.firstLine.rightWing ?? "No player selected"} ${
+      roster.firstLine.center ?? "No player selected"
+    } ${roster.firstLine.rightWing ?? "No player selected"}`;
 
-    navigator.clipboard.writeText(lineupsCopyText);
+    navigator.clipboard.writeText(rosterCopyText);
   };
 
   return (
@@ -98,19 +97,17 @@ const Lineups = () => {
         <ToggleButton value="4thLine">4th line</ToggleButton>
       </ToggleButtonGroup>
       <Lineup
-        goalie={lineups.goalie}
+        goalie={roster.goalie}
         lineup={getLineup()}
         setGoalie={setGoalie}
         setLineup={setLineup}
       />
-      <Button variant="outlined" onClick={() => setLineups(initialLineups)}>
+      <Button variant="outlined" onClick={() => setRoster(initialRoster)}>
         Clear
       </Button>
-      <Button variant="outlined" onClick={copyLineups}>
+      <Button variant="outlined" onClick={copyRoster}>
         Copy
       </Button>
     </div>
   );
 };
-
-export default Lineups;
