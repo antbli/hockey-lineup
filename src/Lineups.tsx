@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PlayerModel } from "./Player";
 import { Lineup, LineupModel } from "./Lineup";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
@@ -24,23 +24,23 @@ const Lineups = () => {
 
   const [selectedLineup, setSelectedLineup] = useState<LineupId>("1stLine");
 
-  const getLineup = () => {
+  const getLineup = (): LineupModel => {
     switch (selectedLineup) {
       case "1stLine":
         return lineups.firstLine;
       case "2ndLine":
-        return lineups.firstLine;
+        return lineups.secondLine;
       case "3rdLine":
-        return lineups.firstLine;
+        return lineups.thirdLine;
       case "4thLine":
-        return lineups.firstLine;
+        return lineups.fourthLine;
       default:
         const exhaustiveCheck: never = selectedLineup;
-        throw new Error(`Unhandled case: ${exhaustiveCheck}`);
+        return exhaustiveCheck;
     }
   };
 
-  const setLineup = (lineup: LineupModel) => {
+  const setLineup = (lineup: LineupModel): void => {
     switch (selectedLineup) {
       case "1stLine":
         setLineups({ ...lineups, firstLine: lineup });
@@ -72,6 +72,7 @@ const Lineups = () => {
         exclusive
         value={selectedLineup}
         onChange={(_, newLineup) => setSelectedLineup(newLineup)}
+        size="small"
       >
         <ToggleButton value="1stLine">1st line</ToggleButton>
         <ToggleButton value="2ndLine">2nd line</ToggleButton>

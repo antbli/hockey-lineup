@@ -3,7 +3,6 @@ import { PlayerModel } from "./Player";
 import {
   Autocomplete,
   AutocompleteChangeReason,
-  AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   Dialog,
   DialogTitle,
