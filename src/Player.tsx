@@ -12,7 +12,7 @@ export type PlayerModel = {
 
 type Props = {
   player?: PlayerModel;
-  setPlayer: (player: PlayerModel) => void;
+  setPlayer: (player?: PlayerModel) => void;
   paddingTop?: number;
 };
 
@@ -29,14 +29,18 @@ export const Player = ({ player, setPlayer, paddingTop }: Props) => {
 
   return (
     <div style={{ paddingTop: `${paddingTop}px` }}>
-      <Stack
-        onClick={() => setDialogOpen(true)}
-        justifyContent="center"
-        alignItems="center"
-        sx={{ cursor: "pointer" }}
-      >
-        <Avatar variant="rounded" />
-        <Typography align="center" variant="body1">
+      <Stack alignItems="center">
+        <Avatar
+          onClick={() => setDialogOpen(true)}
+          variant="circular"
+          sx={{ cursor: "pointer" }}
+        />
+        <Typography
+          onClick={() => setDialogOpen(true)}
+          align="center"
+          variant="body1"
+          sx={{ cursor: "pointer" }}
+        >
           {player?.fullname ?? "+"}
         </Typography>
       </Stack>
