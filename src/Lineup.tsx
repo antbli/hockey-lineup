@@ -3,7 +3,6 @@ import { Player, PlayerModel } from "./Player";
 import rinkImage from "./rink.svg";
 
 export type LineupModel = {
-  goalie?: PlayerModel;
   leftDefense?: PlayerModel;
   rightDefense?: PlayerModel;
   leftWing?: PlayerModel;
@@ -12,11 +11,13 @@ export type LineupModel = {
 };
 
 type Props = {
+  goalie?: PlayerModel;
   lineup: LineupModel;
+  setGoalie: (goalie?: PlayerModel) => void;
   setLineup: (lineup: LineupModel) => void;
 };
 
-export const Lineup = ({ lineup, setLineup }: Props) => {
+export const Lineup = ({ goalie, lineup, setGoalie, setLineup }: Props) => {
   return (
     <div
       style={{
@@ -28,10 +29,7 @@ export const Lineup = ({ lineup, setLineup }: Props) => {
     >
       <Grid2 container rowSpacing="55px" paddingTop="50px">
         <Grid2 size={12}>
-          <Player
-            player={lineup.goalie}
-            setPlayer={(player) => setLineup({ ...lineup, goalie: player })}
-          ></Player>
+          <Player player={goalie} setPlayer={setGoalie}></Player>
         </Grid2>
         <Grid2 size={6}>
           <Player

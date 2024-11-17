@@ -6,6 +6,7 @@ import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 type LineupId = "1stLine" | "2ndLine" | "3rdLine" | "4thLine";
 
 type LineupsModel = {
+  goalie?: PlayerModel;
   firstLine: LineupModel;
   secondLine: LineupModel;
   thirdLine: LineupModel;
@@ -13,7 +14,7 @@ type LineupsModel = {
   extraPlayers: PlayerModel[];
 };
 
-const initialLineups = {
+const initialLineups: LineupsModel = {
   firstLine: {},
   secondLine: {},
   thirdLine: {},
@@ -42,6 +43,9 @@ const Lineups = () => {
     }
   };
 
+  const setGoalie = (goalie?: PlayerModel) =>
+    setLineups({ ...lineups, goalie });
+
   const setLineup = (lineup: LineupModel): void => {
     switch (selectedLineup) {
       case "1stLine":
@@ -60,6 +64,18 @@ const Lineups = () => {
         const exhaustiveCheck: never = selectedLineup;
         throw new Error(`Unhandled case: ${exhaustiveCheck}`);
     }
+  };
+
+  const copyLineups = () => {
+    const lineupsCopyText = `First line:\n${
+      lineups.goalie ?? "No player selected"
+    }\n${lineups.firstLine.rightDefense ?? "No player selected"} ${
+      lineups.firstLine.leftDefense ?? "No player selected"
+    }\n${lineups.firstLine.rightWing ?? "No player selected"} ${
+      lineups.firstLine.center ?? "No player selected"
+    } ${lineups.firstLine.rightWing ?? "No player selected"}`;
+
+    navigator.clipboard.writeText(lineupsCopyText);
   };
 
   return (
@@ -81,13 +97,17 @@ const Lineups = () => {
         <ToggleButton value="3rdLine">3rd line</ToggleButton>
         <ToggleButton value="4thLine">4th line</ToggleButton>
       </ToggleButtonGroup>
-      <Lineup lineup={getLineup()} setLineup={setLineup} />
-      <Button
-        sx={{ marginTop: "10px" }}
-        variant="outlined"
-        onClick={() => setLineups(initialLineups)}
-      >
+      <Lineup
+        goalie={lineups.goalie}
+        lineup={getLineup()}
+        setGoalie={setGoalie}
+        setLineup={setLineup}
+      />
+      <Button variant="outlined" onClick={() => setLineups(initialLineups)}>
         Clear
+      </Button>
+      <Button variant="outlined" onClick={copyLineups}>
+        Copy
       </Button>
     </div>
   );
