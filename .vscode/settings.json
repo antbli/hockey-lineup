@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/ef7d44f5-a451-4dd5-a3cf-ac815d5ee52f/resourceGroups/hockey-lineup_group/providers/Microsoft.Web/sites/hockey-lineup",
+  "appService.deploySubpath": "."
+}
