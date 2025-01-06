@@ -78,7 +78,9 @@ export const PlayerFinder = ({ open, onClose }: Props) => {
         getOptionKey={(player) => player.id}
         onInputChange={handleInputChange}
         filterOptions={(x) => x}
-        renderInput={(params) => <TextField {...params} label="Player" />}
+        renderInput={(params) => (
+          <TextField autoFocus {...params} label="Player" />
+        )}
         onChange={handleChange}
         onClose={handleClose}
       />
