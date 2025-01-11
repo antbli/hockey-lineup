@@ -65,37 +65,37 @@ export const Roster = () => {
     }
   };
 
-  const centerWords = (text: string): string => {
-    const lines = text.split("\n"); // Split the input text into lines
-    // Find the length of the longest line
-    const maxLength = Math.max(...lines.map((line) => line.length));
+  // const centerWords = (text: string): string => {
+  //   const lines = text.split("\n"); // Split the input text into lines
+  //   // Find the length of the longest line
+  //   const maxLength = Math.max(...lines.map((line) => line.length));
 
-    const centeredLines = lines.map((line) => {
-      const words = line.split(" "); // Split each line into words
-      const centeredWords = words.map((word) =>
-        word
-          .padStart((maxLength - word.length) / 2 + word.length)
-          .padEnd(maxLength)
-      );
-      return centeredWords.join(" ");
-    });
+  //   const centeredLines = lines.map((line) => {
+  //     const words = line.split(" "); // Split each line into words
+  //     const centeredWords = words.map((word) =>
+  //       word
+  //         .padStart((maxLength - word.length) / 2 + word.length)
+  //         .padEnd(maxLength)
+  //     );
+  //     return centeredWords.join(" ");
+  //   });
 
-    return centeredLines.join("\n"); // Join the lines back together
-  };
+  //   return centeredLines.join("\n"); // Join the lines back together
+  // };
 
-  const copyRoster = () => {
-    const rosterCopyText = `First line:\n${
-      roster.goalie ?? "No player selected"
-    }\n${roster.firstLine.rightDefense ?? "No player selected"}, ${
-      roster.firstLine.leftDefense ?? "No player selected"
-    }\n${roster.firstLine.rightWing ?? "No player selected"}, ${
-      roster.firstLine.center ?? "No player selected"
-    }, ${roster.firstLine.rightWing ?? "No player selected"}`;
+  // const copyRoster = () => {
+  //   const rosterCopyText = `First line:\n${
+  //     roster.goalie ?? "No player selected"
+  //   }\n${roster.firstLine.rightDefense ?? "No player selected"}, ${
+  //     roster.firstLine.leftDefense ?? "No player selected"
+  //   }\n${roster.firstLine.rightWing ?? "No player selected"}, ${
+  //     roster.firstLine.center ?? "No player selected"
+  //   }, ${roster.firstLine.rightWing ?? "No player selected"}`;
 
-    const formatted = centerWords(rosterCopyText);
+  //   const formatted = centerWords(rosterCopyText);
 
-    navigator.clipboard.writeText(formatted);
-  };
+  //   navigator.clipboard.writeText(formatted);
+  // };
 
   return (
     <div style={{ width: "344px", margin: "auto" }}>
