@@ -65,37 +65,32 @@ export const Roster = () => {
     }
   };
 
-  // const centerWords = (text: string): string => {
-  //   const lines = text.split("\n"); // Split the input text into lines
-  //   // Find the length of the longest line
-  //   const maxLength = Math.max(...lines.map((line) => line.length));
+  const getPlayerText = (player?: PlayerModel) => {
+    return player?.fullname ?? "No player selected";
+  };
 
-  //   const centeredLines = lines.map((line) => {
-  //     const words = line.split(" "); // Split each line into words
-  //     const centeredWords = words.map((word) =>
-  //       word
-  //         .padStart((maxLength - word.length) / 2 + word.length)
-  //         .padEnd(maxLength)
-  //     );
-  //     return centeredWords.join(" ");
-  //   });
+  const getGoaliesText = () => {
+    return `Goalies:\n${getPlayerText(roster.goalie)}`;
+  };
 
-  //   return centeredLines.join("\n"); // Join the lines back together
-  // };
+  const getLineupText = (lineup: LineupModel) => {
+    return `${getPlayerText(lineup.leftDefense)}, ${getPlayerText(
+      lineup.rightDefense
+    )}\n${getPlayerText(lineup.leftWing)}, ${getPlayerText(
+      lineup.center
+    )}, ${getPlayerText(lineup.rightWing)}`;
+  };
 
-  // const copyRoster = () => {
-  //   const rosterCopyText = `First line:\n${
-  //     roster.goalie ?? "No player selected"
-  //   }\n${roster.firstLine.rightDefense ?? "No player selected"}, ${
-  //     roster.firstLine.leftDefense ?? "No player selected"
-  //   }\n${roster.firstLine.rightWing ?? "No player selected"}, ${
-  //     roster.firstLine.center ?? "No player selected"
-  //   }, ${roster.firstLine.rightWing ?? "No player selected"}`;
-
-  //   const formatted = centerWords(rosterCopyText);
-
-  //   navigator.clipboard.writeText(formatted);
-  // };
+  const copyRoster = () => {
+    const rosterCopyText = `${getGoaliesText()}\n\nFirst line:\n${getLineupText(
+      roster.firstLine
+    )}\n\nSecond line:\n${getLineupText(
+      roster.secondLine
+    )}\n\nThird line:\n${getLineupText(
+      roster.thirdLine
+    )}\n\nFourth line:\n${getLineupText(roster.fourthLine)}\n\n`;
+    navigator.clipboard.writeText(rosterCopyText);
+  };
 
   return (
     <div style={{ width: "344px", margin: "auto" }}>
@@ -125,9 +120,9 @@ export const Roster = () => {
       <Button variant="outlined" onClick={() => setRoster(initialRoster)}>
         Clear
       </Button>
-      {/* <Button variant="outlined" onClick={copyRoster}>
-        Copy
-      </Button> */}
+      <Button variant="outlined" onClick={copyRoster}>
+        Copy as text
+      </Button>
     </div>
   );
 };
