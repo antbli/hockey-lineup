@@ -70,15 +70,15 @@ export const Roster = () => {
   };
 
   const getGoaliesText = () => {
-    return `Goalies:\n${getPlayerText(roster.goalie)}`;
+    return `Goalkeepers:\nGK ${getPlayerText(roster.goalie)}`;
   };
 
   const getLineupText = (lineup: LineupModel) => {
-    return `${getPlayerText(lineup.leftDefense)}, ${getPlayerText(
+    return `LD ${getPlayerText(lineup.leftDefense)}\nRD ${getPlayerText(
       lineup.rightDefense
-    )}\n${getPlayerText(lineup.leftWing)}, ${getPlayerText(
+    )}\nLW ${getPlayerText(lineup.leftWing)}\nCE ${getPlayerText(
       lineup.center
-    )}, ${getPlayerText(lineup.rightWing)}`;
+    )}\nRW ${getPlayerText(lineup.rightWing)}`;
   };
 
   const copyRoster = () => {
